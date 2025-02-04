@@ -5,7 +5,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float deadzone = 0.3f;
-    [SerializeField] private float speed = 1f;
+    [SerializeField] private float maxSpeed = 5f;
+    [SerializeField] private float acceleration = 10f; 
+    [SerializeField] private float deceleration = 15f;
 
     [SerializeField] private Bullet bulletPrefab = null;
     [SerializeField] private Transform shootAt = null;
@@ -13,6 +15,8 @@ public class Player : MonoBehaviour
     [SerializeField] private string collideWithTag = "Untagged";
 
     private float lastShootTimestamp = Mathf.NegativeInfinity;
+    private float currentSpeed = 0f; 
+    private float moveDirection = 0f; 
 
     void Update()
     {
@@ -22,18 +26,33 @@ public class Player : MonoBehaviour
 
     void UpdateMovement()
     {
-        float move = Input.GetAxis("Horizontal");
-        if (Mathf.Abs(move) < deadzone) { return; }
+        float moveInput = Input.GetAxis("Horizontal");
 
-        move = Mathf.Sign(move);
-        float delta = move * speed * Time.deltaTime;
+        if (Mathf.Abs(moveInput) < deadzone)
+        {
+            moveDirection = 0;
+        }
+        else
+        {
+            moveDirection = Mathf.Sign(moveInput);
+        }
+
+        if (moveDirection != 0) //accelere
+        {
+            currentSpeed = Mathf.MoveTowards(currentSpeed, maxSpeed * moveDirection, acceleration * Time.deltaTime);
+        }
+        else //decelere
+        {
+            currentSpeed = Mathf.MoveTowards(currentSpeed, 0, deceleration * Time.deltaTime);
+        }
+
+        float delta = currentSpeed * Time.deltaTime;
         transform.position = GameManager.Instance.KeepInBounds(transform.position + Vector3.right * delta);
     }
 
     void UpdateActions()
     {
-        if (    Input.GetKey(KeyCode.Space) 
-            &&  Time.time > lastShootTimestamp + shootCooldown )
+        if (Input.GetKey(KeyCode.Space) && Time.time > lastShootTimestamp + shootCooldown)
         {
             Shoot();
         }
