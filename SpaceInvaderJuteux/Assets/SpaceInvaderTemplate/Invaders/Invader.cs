@@ -29,6 +29,7 @@ public class Invader : MonoBehaviour
 
         Destroy(gameObject);
         Destroy(collision.gameObject);
+        ScreenShake.instance.ShakeScreen(Camera.main,0.9f, 0.1f);
     }
 
     public void Shoot()
