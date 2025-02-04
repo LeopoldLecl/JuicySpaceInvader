@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -13,6 +15,8 @@ public class GameManager : MonoBehaviour
     private Bounds Bounds => new Bounds(transform.position, new Vector3(bounds.x, bounds.y, 1000f));
 
     [SerializeField] private float gameOverHeight;
+
+    public CoupleDatas coupleDatas;
 
     void Awake()
     {

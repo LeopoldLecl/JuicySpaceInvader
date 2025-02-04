@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
 
     void UpdateActions()
     {
-        if (    Input.GetKey(KeyCode.Space) 
+        if (Input.GetKey(KeyCode.Space) 
             &&  Time.time > lastShootTimestamp + shootCooldown )
         {
             Shoot();

@@ -7,7 +7,7 @@ public class Wave : MonoBehaviour
     readonly Vector3[] directions = { Vector3.left, Vector3.down, Vector3.right };
 
     [SerializeField] private int rows = 5;
-    [SerializeField] private int columns = 11;
+    [SerializeField] private int columns = 8;
 
     [SerializeField] private Invader invaderPrefab = null;
 
@@ -65,8 +65,9 @@ public class Wave : MonoBehaviour
         {
             for (int j = 0; j < rows; j++)
             {
+                Debug.Log("Colonne " + i + ", Ligne :" + j);
                 Invader invader = GameObject.Instantiate<Invader>(invaderPrefab, GetPosition(i, j), Quaternion.identity, transform);
-                invader.Initialize(new Vector2Int(i, j));
+                invader.Initialize(new Vector2Int(i, j), GameManager.Instance.coupleDatas.couplesId[rows - 1 - j].values[i]);
                 invader.onDestroy += RemoveInvader;
                 invaders.Add(invader);
                 invaderPerColumn[i].invaders.Add(invader);
@@ -85,7 +86,7 @@ public class Wave : MonoBehaviour
     private void UpdateShoot()
     {
         shootCooldown -= Time.deltaTime;
-        if (shootCooldown > 0) { return; }
+        if (shootCooldown > 0 || invaders.Count == 0) { return; }
 
         // Shoot rate depends on remaining invaders ratio
         float t = 1f - (invaders.Count - 1) / (float)((rows * columns) - 1);
