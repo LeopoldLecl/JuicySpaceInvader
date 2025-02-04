@@ -42,6 +42,7 @@ public class Invader : MonoBehaviour
         if(collision.gameObject.tag != collideWithTag) { return; }
         UpdateInvaderState();
         Destroy(collision.gameObject);
+        ScreenShake.instance.ShakeScreen(Camera.main,0.9f, 0.1f);
     }
 
     void UpdateInvaderState()
