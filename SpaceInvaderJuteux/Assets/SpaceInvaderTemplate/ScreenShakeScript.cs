@@ -5,6 +5,7 @@ public class ScreenShake : MonoBehaviour
 {
     public static ScreenShake instance;
     private Vector3 originalPosition;
+    private Coroutine shakeCoroutine;
 
     private void Awake()
     {
@@ -17,14 +18,20 @@ public class ScreenShake : MonoBehaviour
     public void ShakeScreenWithCurve(Camera camera, float intensity, float duration, AnimationCurve curve)
     {
         if (camera == null) return;
-        StartCoroutine(ShakeWithCurveCoroutine(camera, intensity, duration, curve));
+        if (shakeCoroutine == null)
+        {
+            shakeCoroutine = StartCoroutine(ShakeWithCurveCoroutine(camera, intensity, duration, curve));
+        }
     }
 
 
     public void ShakeScreen(Camera camera, float intensity, float duration)
     {
         if (camera == null) return;
-        StartCoroutine(ShakeCoroutine(camera, intensity, duration));
+        if (shakeCoroutine == null)
+        {
+            shakeCoroutine = StartCoroutine(ShakeCoroutine(camera, intensity, duration));
+        }
     }
 
     private IEnumerator ShakeWithCurveCoroutine(Camera camera, float intensity, float duration, AnimationCurve curve)
@@ -46,6 +53,7 @@ public class ScreenShake : MonoBehaviour
         }
 
         camera.transform.localPosition = originalPosition;
+        shakeCoroutine = null;
     }
 
     private IEnumerator ShakeCoroutine(Camera camera, float intensity, float duration)
@@ -66,5 +74,6 @@ public class ScreenShake : MonoBehaviour
         }
 
         camera.transform.localPosition = originalPosition;
+        shakeCoroutine = null;
     }
 }
