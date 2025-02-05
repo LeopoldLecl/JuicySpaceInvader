@@ -17,7 +17,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float gameOverHeight;
     [SerializeField] private string themeName;
 
+
     public CoupleDatas coupleDatas;
+
+    [Header("Enable VFX")]
+    public bool vfx1Enabled = true;
+    public bool vfx2Enabled = true;
+    public bool vfx3Enabled = true;
+    public bool vfx4Enabled = true;
+    public bool vfx5Enabled = true;
+    public bool vfx6Enabled = true;
+    public bool vfx7Enabled = true;
+    public bool vfx8Enabled = true;
 
     void Awake()
     {
@@ -27,6 +38,26 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         AudioManager.instance.Play(themeName);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            vfx1Enabled = !vfx1Enabled;
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+            vfx2Enabled = !vfx2Enabled;
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+            vfx3Enabled = !vfx3Enabled;
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+            vfx4Enabled = !vfx4Enabled;
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+            vfx5Enabled = !vfx5Enabled;
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+            vfx6Enabled = !vfx6Enabled;
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+            vfx7Enabled = !vfx7Enabled;
+        if (Input.GetKeyDown(KeyCode.Alpha8))
+            vfx8Enabled = !vfx8Enabled;
     }
 
     public Vector3 KeepInBounds(Vector3 position)

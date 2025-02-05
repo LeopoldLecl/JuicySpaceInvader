@@ -195,7 +195,9 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7369880722360228486, guid: 42269f87d33f3eb4898473401db125ae, type: 3}
   shootAt: {fileID: 495127406}
   shootCooldown: 0.3
-  collideWithTag: Untagged
+  recoilAmplitude: 0.2
+  dampingFactor: 2
+  frequency: 10
 --- !u!212 &582271455
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -635,6 +637,14 @@ MonoBehaviour:
   gameOverHeight: 0.8
   themeName: BackGround Music
   coupleDatas: {fileID: 11400000, guid: fe302281b237b214289df38fbc20fc58, type: 2}
+  vfx1Enabled: 1
+  vfx2Enabled: 1
+  vfx3Enabled: 1
+  vfx4Enabled: 1
+  vfx5Enabled: 1
+  vfx6Enabled: 1
+  vfx7Enabled: 1
+  vfx8Enabled: 1
 --- !u!4 &879569044
 Transform:
   m_ObjectHideFlags: 0
