@@ -176,7 +176,7 @@ public class Player : MonoBehaviour
                     targetVignetteIntensity = 0.7f;
                     colorVfx.saturation.value = -100f;
                     colorVfx.contrast.value = 68f;
-                    ScreenShake.instance.ShakeScreen(Camera.main, 0.9f, 0.1f);
+                    //ScreenShake.instance.ShakeScreen(Camera.main, 0.9f, 0.1f);
 
                     GameManager.Instance.PlayGameOver();
                     break;
