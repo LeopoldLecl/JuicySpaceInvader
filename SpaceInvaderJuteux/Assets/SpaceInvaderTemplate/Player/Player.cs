@@ -23,6 +23,12 @@ public class Player : MonoBehaviour
     private float currentSpeed = 0f;
     private float moveDirection = 0f;
 
+    [Header("Recoil Effect")]
+    [SerializeField] private float recoilAmplitude = 0.2f;
+    [SerializeField] private float dampingFactor = 2.0f;
+    [SerializeField] private float frequency = 10f;
+    private Vector3 recoilOffset = Vector3.zero;
+
     private Transform playerTransform;
 
     void Start()
@@ -92,6 +98,24 @@ public class Player : MonoBehaviour
     {
         Instantiate(bulletPrefab, shootAt.position, Quaternion.identity);
         lastShootTimestamp = Time.time;
+        StartCoroutine(RecoilEffect());
+    }
+
+    IEnumerator RecoilEffect()
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < shootCooldown)
+        {
+            float displacement = recoilAmplitude * Mathf.Exp(-dampingFactor * elapsedTime) * Mathf.Sin(frequency * elapsedTime);
+            Vector3 newOffset = new Vector3(0, -displacement, 0);
+            transform.position += newOffset - recoilOffset;
+            recoilOffset = newOffset;
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        transform.position -= recoilOffset;
+        recoilOffset = Vector3.zero;
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
