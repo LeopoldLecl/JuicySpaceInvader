@@ -195,7 +195,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7369880722360228486, guid: 42269f87d33f3eb4898473401db125ae, type: 3}
   shootAt: {fileID: 495127406}
   shootCooldown: 0.3
-  collideWithTag: Untagged
 --- !u!212 &582271455
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -298,7 +297,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 1
 --- !u!1 &805531689
 GameObject:
   m_ObjectHideFlags: 0

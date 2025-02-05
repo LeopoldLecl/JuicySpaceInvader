@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+using static Unity.Collections.AllocatorManager;
+
 
 public class Player : MonoBehaviour
 {
@@ -17,17 +21,38 @@ public class Player : MonoBehaviour
     [SerializeField] private Bullet bulletPrefab = null;
     [SerializeField] private Transform shootAt = null;
     [SerializeField] private float shootCooldown = 1f;
-    [SerializeField] private string collideWithTag = "Untagged";
+  //  [SerializeField] private string collideWithTag = "Untagged";
 
     private float lastShootTimestamp = Mathf.NegativeInfinity;
     private float currentSpeed = 0f;
     private float moveDirection = 0f;
 
     private Transform playerTransform;
+    private int playerHealth = 3;
+
+    //sfx
+    private Volume volume;
+    private Vignette vignetteVfx;
+    private ColorAdjustments colorVfx;
 
     void Start()
     {
         playerTransform = transform; // Récupérer le transform pour optimisation
+        volume = Camera.main.GetComponent<Volume>();
+
+        if (volume == null)
+        {
+            Debug.LogError("Aucun Volume trouvé sur la caméra !");
+            return;
+        }
+        if (volume.profile.TryGet<Vignette>(out vignetteVfx))
+        {
+            Debug.Log("Vignette trouvé !");
+        }
+        if (volume.profile.TryGet<ColorAdjustments>(out colorVfx))
+        {
+            Debug.Log("ColorAdjustments trouvé !");
+        }
     }
 
     void Update()
@@ -96,8 +121,33 @@ public class Player : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag != collideWithTag) { return; }
+        if (collision.CompareTag("Bullet"))
+        {
+            playerHealth--;
 
-        GameManager.Instance.PlayGameOver();
+            switch(playerHealth) {
+                case 2:
+                    Debug.Log("Player health: " + playerHealth);
+                    vignetteVfx.intensity.value = 0.4f;
+                    break;
+                case 1:
+                    vignetteVfx.intensity.value = 0.5f;
+                    Debug.Log("Player health: " + playerHealth);    
+                    break;
+                case 0:
+                    colorVfx.saturation.value = -100f;
+                    colorVfx.contrast.value = 68f;
+                    GameManager.Instance.PlayGameOver();
+                    break;
+            }
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.CompareTag("Invader"))
+        {
+            colorVfx.saturation.value = -100f;
+            colorVfx.contrast.value = 68f;
+            GameManager.Instance.PlayGameOver();
+        }
     }
 }
