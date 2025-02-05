@@ -15,12 +15,18 @@ public class GameManager : MonoBehaviour
     private Bounds Bounds => new Bounds(transform.position, new Vector3(bounds.x, bounds.y, 1000f));
 
     [SerializeField] private float gameOverHeight;
+    [SerializeField] private string themeName;
 
     public CoupleDatas coupleDatas;
 
     void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        AudioManager.instance.Play(themeName);
     }
 
     public Vector3 KeepInBounds(Vector3 position)
