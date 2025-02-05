@@ -138,16 +138,22 @@ public class Player : MonoBehaviour
             {
                 case 2:
                     Debug.Log("Player health: " + playerHealth);
-                    targetVignetteIntensity = 0.45f; 
+                    targetVignetteIntensity = 0.45f;
+                    ScreenShake.instance.ShakeScreen(Camera.main, 0.5f, 0.1f);
+
                     break;
                 case 1:
                     Debug.Log("Player health: " + playerHealth);
                     targetVignetteIntensity = 0.55f;
+                    ScreenShake.instance.ShakeScreen(Camera.main, 0.7f, 0.1f);
+
                     break;
                 case 0:
                     targetVignetteIntensity = 0.7f;
                     colorVfx.saturation.value = -100f;
                     colorVfx.contrast.value = 68f;
+                    ScreenShake.instance.ShakeScreen(Camera.main, 0.9f, 0.1f);
+
                     GameManager.Instance.PlayGameOver();
                     break;
             }
