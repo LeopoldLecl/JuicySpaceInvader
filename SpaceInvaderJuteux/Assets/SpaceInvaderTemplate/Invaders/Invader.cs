@@ -108,6 +108,7 @@ public class Invader : MonoBehaviour
             if (invader.coupleId == _coupleId)
             {
                 invader.SetTakenState();
+                GameManager.Instance.AddScore(10);
             }
         }
     }
