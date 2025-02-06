@@ -47,8 +47,7 @@ Shader "Flo/Couple_heart"
 			#pragma fragment frag
 			#pragma multi_compile_instancing
 			#include "UnityCG.cginc"
-			#define ASE_NEEDS_FRAG_COLOR
-
+			
 
 			struct appdata
 			{
@@ -114,8 +113,8 @@ Shader "Flo/Couple_heart"
 				float3 WorldPosition = i.worldPos;
 				#endif
 				float2 uv_TextureSample0 = i.ase_texcoord1.xy * _TextureSample0_ST.xy + _TextureSample0_ST.zw;
-				float4 temp_output_25_0 = ( i.ase_color * tex2D( _TextureSample0, uv_TextureSample0 ) );
-				float4 appendResult30 = (float4(( _HDR * (temp_output_25_0).rgb ) , (temp_output_25_0).a));
+				float4 tex2DNode19 = tex2D( _TextureSample0, uv_TextureSample0 );
+				float4 appendResult30 = (float4(( _HDR * (( i.ase_color * tex2DNode19 )).rgb ) , tex2DNode19.a));
 				
 
 				finalColor = appendResult30;
@@ -134,19 +133,19 @@ Node;AmplifyShaderEditor.SamplerNode;19;-352,-96;Inherit;True;Property;_TextureS
 Node;AmplifyShaderEditor.VertexColorNode;33;-176,-416;Inherit;False;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;25;128,-336;Inherit;True;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.ComponentMaskNode;27;400,-80;Inherit;False;True;True;True;False;1;0;COLOR;0,0,0,0;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.RangedFloatNode;26;464,-176;Inherit;False;Property;_HDR;HDR;1;0;Create;True;0;0;0;False;0;False;1;0;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.ComponentMaskNode;29;400,16;Inherit;False;False;False;False;True;1;0;COLOR;0,0,0,0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;26;464,-176;Inherit;False;Property;_HDR;HDR;1;0;Create;True;0;0;0;False;0;False;1;30.41;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.ComponentMaskNode;29;400,16;Inherit;False;False;False;False;True;1;0;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;28;672,-112;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT3;1,0,0;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.DynamicAppendNode;30;896,-96;Inherit;False;FLOAT4;4;0;FLOAT3;0,0,0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT4;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;22;1136,-96;Float;False;True;-1;3;AmplifyShaderEditor.MaterialInspector;100;5;Flo/Couple_heart;0770190933193b94aaa3065e307002fa;True;Unlit;0;0;Unlit;2;True;True;2;5;False;;10;False;;0;1;False;;0;False;;True;0;False;;0;False;;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;1;RenderType=Opaque=RenderType;True;2;False;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;0;;0;0;Standard;1;Vertex Position,InvertActionOnDeselection;1;0;0;1;True;False;;False;0
 WireConnection;25;0;33;0
 WireConnection;25;1;19;0
 WireConnection;27;0;25;0
-WireConnection;29;0;25;0
+WireConnection;29;0;19;4
 WireConnection;28;0;26;0
 WireConnection;28;1;27;0
 WireConnection;30;0;28;0
 WireConnection;30;3;29;0
 WireConnection;22;0;30;0
 ASEEND*/
-//CHKSM=28CD2E0BAFA2E4891034CA46068A93DAAC409FDD
+//CHKSM=78A91BC8A64B1029AC20BCEA5B5062AA79D116C7
