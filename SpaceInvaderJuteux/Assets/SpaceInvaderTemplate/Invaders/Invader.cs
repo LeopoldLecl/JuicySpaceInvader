@@ -18,6 +18,7 @@ public class Invader : MonoBehaviour
     [SerializeField] private string collideWithTag = "Player";
     public int coupleId;
     [SerializeField] private Text coupleIdText;
+    [SerializeField] private GameObject impactPrefab;
 
     private SpriteRenderer sr;
     [HideInInspector] public InvaderState currentState = InvaderState.Single;
@@ -32,6 +33,7 @@ public class Invader : MonoBehaviour
     [Header("Taken")]
     [SerializeField] private Sprite takenSprite;
     [SerializeField] private string[] takenSounds;
+    [SerializeField] private GameObject takenVfxPrefab;
 
 
     internal Action<Invader> onDestroy;
@@ -55,6 +57,8 @@ public class Invader : MonoBehaviour
     {
         if(collision.gameObject.tag != collideWithTag) { return; }
         UpdateInvaderState();
+        GameObject impact = Instantiate(impactPrefab, collision.transform.position, collision.transform.rotation);
+        Destroy(impact, 4f);
         Destroy(collision.gameObject);
         ScreenShake.instance.ShakeScreen(Camera.main,0.1f, 0.05f);
     }
@@ -113,7 +117,9 @@ public class Invader : MonoBehaviour
         currentState = InvaderState.Taken;
         sr.sprite = takenSprite;
         AudioManager.instance.PlayRandom(takenSounds);
-        Destroy(gameObject, 1f);
+        GameObject vfx = Instantiate(takenVfxPrefab, transform.position, transform.rotation);
+        Destroy(vfx, 4f);
+        Destroy(gameObject, 2.5f);
     }
 
     public void Shoot()
