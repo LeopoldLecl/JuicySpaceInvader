@@ -16,6 +16,7 @@ public class Invader : MonoBehaviour
     }
 
     [SerializeField] private Bullet bulletPrefab = null;
+    [SerializeField] private Bullet bulletWithoutTrailPrefab = null;
     [SerializeField] private Transform shootAt = null;
     [SerializeField] private string collideWithTag = "Player";
     public int coupleId;
@@ -156,7 +157,15 @@ public class Invader : MonoBehaviour
 
     public void Shoot()
     {
-        Instantiate(bulletPrefab, shootAt.position, Quaternion.identity);
+        if (GameManager.Instance.vfx4Enabled)
+        {
+            Instantiate(bulletPrefab, shootAt.position, Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(bulletWithoutTrailPrefab, shootAt.position, Quaternion.identity);
+        }
+        
         AudioManager.instance.PlayRandom(enemyShootSounds);
     }
 }
