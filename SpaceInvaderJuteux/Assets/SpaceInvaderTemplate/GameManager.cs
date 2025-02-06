@@ -19,8 +19,13 @@ public class GameManager : MonoBehaviour
 
     public int score = 0;
 
+    public int takenFrogCount = 0;
+
 
     public CoupleDatas coupleDatas;
+
+    public Transform StartGrassFrogPoint;
+    public Transform EndGrassFrogPoint;
 
     [Header("Flowers")]
     [SerializeField] SpriteRenderer flowersSr;
@@ -144,6 +149,13 @@ public class GameManager : MonoBehaviour
         {
             flowersSr.sprite = thirdFlowersSprite;
         }
+    }
+
+    public Vector3 GetFinalPosition(int count)
+    {
+        float newX = Mathf.Lerp(StartGrassFrogPoint.position.x, EndGrassFrogPoint.position.x, (float)count / 24);
+        float yVariation = (count % 2 == 0) ? 0.4f : -0.4f;
+        return new Vector3(newX, StartGrassFrogPoint.position.y + (float)yVariation , 0);
     }
 
 }
