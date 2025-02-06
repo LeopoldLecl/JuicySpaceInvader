@@ -35,7 +35,6 @@ Shader "Custom/WavyTrailShaderAdvancedColor"
             struct v2f
             {
                 float2 uv : TEXCOORD0;
-                float2 uv2 : TEXCOORD1;
                 float4 vertex : SV_POSITION;
             };
 
@@ -53,46 +52,26 @@ Shader "Custom/WavyTrailShaderAdvancedColor"
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = v.uv;
-
-                float4 ScreenPos = ComputeScreenPos(o.vertex);
-
-                ScreenPos /= ScreenPos.w;
-                o.uv2 = float2(ScreenPos.x, ScreenPos.y);
-
-                
-                float2 noiseValue = tex2Dlod(_NoiseTex, o.uv2).rg * 2.0 - 1.0;
-
-                float2 distortedUV = i.uv + noiseValue * _DistortionStrength;
-                o.vertex.x += distortedUV.x;
                 return o;
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
-                //float time = _Time.y * _WaveSpeed;
+                float time = _Time.y * _WaveSpeed;
 
-                //// Génère un mouvement ondulant
-                //float waveX = sin(i.uv.y * _WaveFrequency + time) * _WaveAmplitude;
-                //float waveY = cos(i.uv.x * _WaveFrequency + time) * _WaveAmplitude;
+                // Génère un mouvement ondulant
+                float waveX = sin(i.uv.y * _WaveFrequency + time) * _WaveAmplitude;
+                float waveY = cos(i.uv.x * _WaveFrequency + time) * _WaveAmplitude;
 
-                //// Ajoute un effet de bruit
-                //float2 noiseUV = i.uv + float2(waveX, waveY) * _RandomFactor;
-                //float2 noiseValue = tex2D(_NoiseTex, noiseUV).rg * 2.0 - 1.0;
+                // Ajoute un effet de bruit
+                float2 noiseUV = i.uv + float2(waveX, waveY) * _RandomFactor;
+                float2 noiseValue = tex2D(_NoiseTex, noiseUV).rg * 2.0 - 1.0;
 
-                //// Applique la distorsion finale
-                //float2 distortedUV = i.uv + noiseValue * _DistortionStrength + float2(waveX, waveY);
+                // Applique la distorsion finale
+                float2 distortedUV = i.uv + noiseValue * _DistortionStrength + float2(waveX, waveY);
                 
-                //// Récupère la couleur de la texture et applique la couleur du trail
-                //fixed4 col = tex2D(_MainTex, distortedUV) * _TrailColor;
-
-                //return col;
-
-
-                                float2 noiseValue = tex2D(_NoiseTex, i.uv2).rg * 2.0 - 1.0;
-
-                                float2 distortedUV = i.uv + noiseValue * _DistortionStrength;
-                                fixed4 col = tex2D(_MainTex, distortedUV) * _TrailColor;
-
+                // Récupère la couleur de la texture et applique la couleur du trail
+                fixed4 col = tex2D(_MainTex, distortedUV) * _TrailColor;
 
                 return col;
             }
