@@ -286,6 +286,7 @@ MonoBehaviour:
   collideWithTag: Player
   coupleId: 0
   coupleIdText: {fileID: 4689545935638161597}
+  impactPrefab: {fileID: 6619687522983892993, guid: 6ebac3e9e94014049b7f636e2d004439, type: 3}
   currentState: 0
   enemyShootSounds:
   - EnemyShoot1
@@ -301,6 +302,7 @@ MonoBehaviour:
   - Couple1
   - Couple2
   - Couple3
+  takenVfxPrefab: {fileID: 646805706354386770, guid: 27b07ca755f54fa48b1c7e2428f40fb5, type: 3}
 --- !u!61 &1286698669282929100
 BoxCollider2D:
   m_ObjectHideFlags: 0
