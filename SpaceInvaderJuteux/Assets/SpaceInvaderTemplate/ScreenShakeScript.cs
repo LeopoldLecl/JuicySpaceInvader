@@ -28,7 +28,7 @@ public class ScreenShake : MonoBehaviour
     public void ShakeScreen(Camera camera, float intensity, float duration)
     {
         if (camera == null) return;
-        if (shakeCoroutine == null)
+        if (shakeCoroutine == null && GameManager.Instance.vfx9Enabled)
         {
             shakeCoroutine = StartCoroutine(ShakeCoroutine(camera, intensity, duration));
         }

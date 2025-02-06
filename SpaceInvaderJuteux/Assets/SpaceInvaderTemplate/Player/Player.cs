@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour
 
     [Header("Shoot")]
     [SerializeField] private Bullet bulletPrefab = null;
+    [SerializeField] private Bullet bulletWithoutTrailPrefab = null;
     [SerializeField] private Transform shootAt = null;
     [SerializeField] private float shootCooldown = 1f;
     [SerializeField] private string[] shootSounds;
@@ -75,9 +77,25 @@ public class Player : MonoBehaviour
     {
         UpdateMovement();
         UpdateActions();
-        SmoothVignetteEffect(); // Applique l'interpolation du vignettage
-        if (isInGame)
+        if (GameManager.Instance.vfx5Enabled)
+        {
+            SmoothVignetteEffect(); // Applique l'interpolation du vignettage
+        }
+        else
+        {
+            ResetVignetteEffect();
+        }
+        
+        if (isInGame && GameManager.Instance.vfx1Enabled)
             UpdateSquashStretchEffect();
+    }
+
+    private void ResetVignetteEffect()
+    {
+        if (vignetteVfx != null)
+        {
+            vignetteVfx.intensity.value = 0f;
+        }
     }
 
     void UpdateMovement()
@@ -137,10 +155,20 @@ public class Player : MonoBehaviour
 
     void Shoot()
     {
-        Instantiate(bulletPrefab, shootAt.position, Quaternion.identity);
+        if (GameManager.Instance.vfx2Enabled)
+        {
+            Instantiate(bulletPrefab, shootAt.position, Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(bulletWithoutTrailPrefab, shootAt.position, Quaternion.identity);
+        }
         AudioManager.instance.PlayRandom(shootSounds);
         lastShootTimestamp = Time.time;
-        StartCoroutine(RecoilEffect());
+        if (GameManager.Instance.vfx1Enabled)
+        {
+            StartCoroutine(RecoilEffect());
+        }
     }
 
     IEnumerator RecoilEffect()
@@ -193,9 +221,6 @@ public class Player : MonoBehaviour
                     break;
                 case 0:
                     //ScreenShake.instance.ShakeScreen(Camera.main, 0.9f, 0.1f);
-                    targetVignetteIntensity = 0.7f;
-                    colorVfx.saturation.value = -100f;
-                    colorVfx.contrast.value = 68f;
                     GameManager.Instance.PlayGameOver();
                     break;
             }

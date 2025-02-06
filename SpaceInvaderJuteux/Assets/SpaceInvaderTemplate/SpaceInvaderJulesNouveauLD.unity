@@ -636,6 +636,7 @@ MonoBehaviour:
   secondFlowersSprite: {fileID: 21300000, guid: 08351d7d26ca1144984eecf708c8b087, type: 3}
   thirdFlowersSprite: {fileID: 21300000, guid: f98c14fb6f5be5b49819429a54efc9e2, type: 3}
   vfx1Enabled: 1
+  movementWind: {fileID: 1443091164}
   vfx2Enabled: 1
   vfx3Enabled: 1
   vfx4Enabled: 1
@@ -658,6 +659,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1443091164 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5353748046212087741, guid: af02d4f2deb1d504fb5bef4d37dbdd8b, type: 3}
+  m_PrefabInstance: {fileID: 5381808034122495744}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1592834378
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,7 +743,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.23, z: 0}
-  m_LocalScale: {x: 0.9262, y: 0.9262, z: 0.9262}
+  m_LocalScale: {x: 0.94, y: 0.94, z: 0.94}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 833631587}
@@ -1065,6 +1071,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8514801570375867810, guid: af02d4f2deb1d504fb5bef4d37dbdd8b, type: 3}
+      propertyPath: bulletWithoutTrailPrefab
+      value: 
+      objectReference: {fileID: 7369880722360228486, guid: 1e77c35908483164d9697f269c0e3da4, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

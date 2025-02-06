@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Enable VFX")]
     public bool vfx1Enabled = true;
+    [SerializeField] GameObject movementWind;
     public bool vfx2Enabled = true;
     public bool vfx3Enabled = true;
     public bool vfx4Enabled = true;
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
     public bool vfx6Enabled = true;
     public bool vfx7Enabled = true;
     public bool vfx8Enabled = true;
+    public bool vfx9Enabled = true;
 
     void Awake()
     {
@@ -60,8 +62,8 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             vfx1Enabled = !vfx1Enabled;
-            AddScore(240);
-        } 
+            movementWind.SetActive(vfx1Enabled);
+        }
         if (Input.GetKeyDown(KeyCode.Alpha2))
             vfx2Enabled = !vfx2Enabled;
         if (Input.GetKeyDown(KeyCode.Alpha3))
@@ -76,6 +78,8 @@ public class GameManager : MonoBehaviour
             vfx7Enabled = !vfx7Enabled;
         if (Input.GetKeyDown(KeyCode.Alpha8))
             vfx8Enabled = !vfx8Enabled;
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+            vfx9Enabled = !vfx9Enabled;
     }
 
     public Vector3 KeepInBounds(Vector3 position)
@@ -123,19 +127,22 @@ public class GameManager : MonoBehaviour
     }
 
     public bool IsBelowGameOver(float position)
-    {        
+    {
         return position < transform.position.y + (gameOverHeight - bounds.y * 0.5f);
     }
 
     public void PlayGameOver()
     {
-        Player player = FindObjectOfType<Player>();
-        player.targetVignetteIntensity = 0.7f;
-        player.colorVfx.saturation.value = -100f;
-        player.colorVfx.contrast.value = 68f;
-        AudioManager.instance.Play("Death");
         AudioManager.instance.Stop("BackGround Music");
-        AudioManager.instance.Play("Losing Music");
+        if (vfx8Enabled)
+        {
+            Player player = FindObjectOfType<Player>();
+            player.targetVignetteIntensity = 0.7f;
+            player.colorVfx.saturation.value = -100f;
+            player.colorVfx.contrast.value = 68f;
+            AudioManager.instance.Play("Death");
+            AudioManager.instance.Play("Losing Music");
+        }
         Debug.Log("Game Over");
         Time.timeScale = 0f;
     }
@@ -154,17 +161,26 @@ public class GameManager : MonoBehaviour
     public void AddScore(int _score)
     {
         score += _score;
-        if(score == 80)
+        if (score == 80)
         {
             flowersSr.sprite = secondFlowersSprite;
         }
-        else if(score == 160)
+        else if (score == 160)
         {
             flowersSr.sprite = thirdFlowersSprite;
         }
-        else if(score == 240)
+        else if (score == 240)
         {
-            StartCoroutine(WinningCoroutine());
+            AudioManager.instance.Stop("BackGround Music");
+            if (!vfx7Enabled)
+            {
+                Debug.Log("You Win");
+                Time.timeScale = 0f;
+            }
+            else
+            {
+                StartCoroutine(WinningCoroutine());
+            }
         }
     }
 
@@ -172,21 +188,20 @@ public class GameManager : MonoBehaviour
     {
         float newX = Mathf.Lerp(StartGrassFrogPoint.position.x, EndGrassFrogPoint.position.x, (float)count / 24);
         float yVariation = (count % 2 == 0) ? 0.4f : -0.4f;
-        return new Vector3(newX, StartGrassFrogPoint.position.y + (float)yVariation , 0);
+        return new Vector3(newX, StartGrassFrogPoint.position.y + (float)yVariation, 0);
     }
 
     private IEnumerator WinningCoroutine()
     {
         Player player = FindObjectOfType<Player>();
         player.isInGame = false;
-        AudioManager.instance.Stop("BackGround Music");
         AudioManager.instance.Play("Winning Music");
         GameObject confettis1 = Instantiate(confettisPrefab, player.transform.position + new Vector3(2f, 2f, 0f), player.transform.rotation);
         GameObject confettis2 = Instantiate(confettisPrefab, player.transform.position + new Vector3(-2f, 2f, 0f), player.transform.rotation);
         Destroy(confettis1, 2.7f);
         Destroy(confettis2, 2.7f);
         yield return new WaitForSeconds(2.5f);
-        
+
         Vector3 targetScale = new Vector3(6f, 6f, 6f);
         while (Vector3.Distance(player.transform.position, Vector3.zero) > 0.01f)
         {
@@ -200,7 +215,7 @@ public class GameManager : MonoBehaviour
         float danceSpeed = 2f;
         float amplitude = 30f;
 
-        while (true) // Boucle infinie pour "danser"
+        while (true)
         {
             elapsedTime += Time.deltaTime * danceSpeed;
             float newZ = Mathf.Lerp(-amplitude, amplitude, Mathf.PingPong(elapsedTime, 1f));
