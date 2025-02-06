@@ -17,8 +17,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float gameOverHeight;
     [SerializeField] private string themeName;
 
+    public int score = 0;
+
 
     public CoupleDatas coupleDatas;
+
+    [Header("Flowers")]
+    [SerializeField] SpriteRenderer flowersSr;
+    [SerializeField] Sprite secondFlowersSprite;
+    [SerializeField] Sprite thirdFlowersSprite;
 
     [Header("Enable VFX")]
     public bool vfx1Enabled = true;
@@ -125,4 +132,18 @@ public class GameManager : MonoBehaviour
             transform.position + Vector3.up * (gameOverHeight - bounds.y * 0.5f) - Vector3.right * bounds.x * 0.5f,
             transform.position + Vector3.up * (gameOverHeight - bounds.y * 0.5f) + Vector3.right * bounds.x * 0.5f);
     }
+
+    public void AddScore(int _score)
+    {
+        score += _score;
+        if(score == 80)
+        {
+            flowersSr.sprite = secondFlowersSprite;
+        }
+        else if(score == 160)
+        {
+            flowersSr.sprite = thirdFlowersSprite;
+        }
+    }
+
 }
