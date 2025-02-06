@@ -27,4 +27,10 @@ public class AudioManager : MonoBehaviour
         sound?.source.Play();
         Debug.Log("je joue " + name);
     }
+
+    public void PlayRandom(string[] names)
+    {
+        string randomName = names[UnityEngine.Random.Range(0, names.Length)];
+        Play(randomName);
+    }
 }

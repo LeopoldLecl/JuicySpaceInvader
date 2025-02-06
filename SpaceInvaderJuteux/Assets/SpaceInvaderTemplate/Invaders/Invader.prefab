@@ -287,11 +287,20 @@ MonoBehaviour:
   coupleId: 0
   coupleIdText: {fileID: 4689545935638161597}
   currentState: 0
-  enemyShootSound: EnemyShoot
+  enemyShootSounds:
+  - EnemyShoot1
+  - EnemyShoot2
+  - EnemyShoot3
   inLoveSprite: {fileID: 21300000, guid: 3d78ee51f64d382429c3223041786509, type: 3}
-  inLoveSound: Charmed
+  inLoveSounds:
+  - Charmed1
+  - Charmed2
+  - Charmed3
   takenSprite: {fileID: 21300000, guid: 03095c1a42eb2334cb9375bc89609cdb, type: 3}
-  takenSound: Couple
+  takenSounds:
+  - Couple1
+  - Couple2
+  - Couple3
 --- !u!61 &1286698669282929100
 BoxCollider2D:
   m_ObjectHideFlags: 0

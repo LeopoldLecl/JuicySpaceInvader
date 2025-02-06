@@ -188,13 +188,26 @@ MonoBehaviour:
   maxSpeed: 5
   acceleration: 20
   deceleration: 25
+  flapSounds:
+  - Flap1
+  - Flap2
+  - Flap3
+  - Flap4
   squashAmount: 0.8
   stretchAmount: 1.2
   normalScale: 1
   stretchSpeed: 5
+  hurtSounds:
+  - Hurt1
+  - Hurt2
+  - Hurt3
   bulletPrefab: {fileID: 7369880722360228486, guid: 42269f87d33f3eb4898473401db125ae, type: 3}
   shootAt: {fileID: 495127406}
-  shootCooldown: 0.3
+  shootCooldown: 0.6
+  shootSounds:
+  - Shoot1
+  - Shoot2
+  - Shoot3
   recoilAmplitude: 0.2
   dampingFactor: 2
   frequency: 10
@@ -589,63 +602,129 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
-  - name: Charmed
+  - name: Charmed1
     clip: {fileID: 8300000, guid: 4e9df77bdb873b547ae00efbafbae300, type: 3}
-    volume: 0.5
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: Couple
+  - name: Charmed2
+    clip: {fileID: 8300000, guid: 2c43b3f2a00acd14ebf1fe72d0d9d9c6, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Charmed3
+    clip: {fileID: 8300000, guid: a719fe05a2f00a040bf2adc55cd5ba96, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Couple1
     clip: {fileID: 8300000, guid: 6f630ac272218254a9d9f5f0b621fd3f, type: 3}
-    volume: 0.5
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Couple2
+    clip: {fileID: 8300000, guid: 9487f3c44648a3b4eb0af6ee5fa2bf35, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Couple3
+    clip: {fileID: 8300000, guid: bfff2114a6b4fa443a1f57d6c172112a, type: 3}
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Death
     clip: {fileID: 8300000, guid: 6db5c31decb978247be07f24ea396b4c, type: 3}
-    volume: 0.5
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: EnemyShoot
+  - name: EnemyShoot1
     clip: {fileID: 8300000, guid: 601a7fd4a9e3fde4ca62753154021538, type: 3}
-    volume: 0.5
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemyShoot2
+    clip: {fileID: 8300000, guid: 19619728ac65f1c419f54ff7425d4733, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemyShoot3
+    clip: {fileID: 8300000, guid: 23b91ce8c1f9e3c4abec005d770594f8, type: 3}
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Flap1
     clip: {fileID: 8300000, guid: be27f48f272690d4abdca344eb50802a, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Hurt1
-    clip: {fileID: 8300000, guid: dcc326bc26b230b43b5dbcab5354a84e, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Hurt2
-    clip: {fileID: 8300000, guid: 106c5205c6640514fb48cf07d34464d2, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Shoot
-    clip: {fileID: 8300000, guid: 055769b1b6c78824f9dc07dd0de3ba12, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Win
-    clip: {fileID: 8300000, guid: 342f0b75d791f104b865ec40bcf44acf, type: 3}
-    volume: 0.5
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Flap2
     clip: {fileID: 8300000, guid: da302fa9c610f0b44b870237661c19fb, type: 3}
-    volume: 0.5
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Flap3
+    clip: {fileID: 8300000, guid: 8f4d142d1eafc0949994423cfb289031, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Flap4
+    clip: {fileID: 8300000, guid: a5afbb66002e49c4f8e5f4e91c6b02d8, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hurt1
+    clip: {fileID: 8300000, guid: dcc326bc26b230b43b5dbcab5354a84e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hurt2
+    clip: {fileID: 8300000, guid: 106c5205c6640514fb48cf07d34464d2, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hurt3
+    clip: {fileID: 8300000, guid: 817e21cddb39eea40bba2151aea3c38f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Shoot1
+    clip: {fileID: 8300000, guid: 055769b1b6c78824f9dc07dd0de3ba12, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Shoot2
+    clip: {fileID: 8300000, guid: 6f054227ceaeb2a42a16397d349a032d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Shoot3
+    clip: {fileID: 8300000, guid: a25743cf0461f994f8e6f5bf4a469e78, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Win
+    clip: {fileID: 8300000, guid: 342f0b75d791f104b865ec40bcf44acf, type: 3}
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}

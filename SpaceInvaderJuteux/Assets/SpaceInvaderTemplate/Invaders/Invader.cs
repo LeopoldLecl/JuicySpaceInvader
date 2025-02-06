@@ -23,15 +23,15 @@ public class Invader : MonoBehaviour
     [HideInInspector] public InvaderState currentState = InvaderState.Single;
 
     [Header("Shoot")]
-    [SerializeField] private string enemyShootSound;
+    [SerializeField] private string[] enemyShootSounds;
 
     [Header("In Love")]
     [SerializeField] private Sprite inLoveSprite;
-    [SerializeField] private string inLoveSound;
+    [SerializeField] private string[] inLoveSounds;
 
     [Header("Taken")]
     [SerializeField] private Sprite takenSprite;
-    [SerializeField] private string takenSound;
+    [SerializeField] private string[] takenSounds;
 
 
     internal Action<Invader> onDestroy;
@@ -77,7 +77,7 @@ public class Invader : MonoBehaviour
     {
         currentState = InvaderState.InLove;
         sr.sprite = inLoveSprite;
-        AudioManager.instance.Play(inLoveSound);
+        AudioManager.instance.PlayRandom(inLoveSounds);
     }
 
     bool TestTakenState(int _coupleId)
@@ -112,13 +112,13 @@ public class Invader : MonoBehaviour
     {
         currentState = InvaderState.Taken;
         sr.sprite = takenSprite;
-        AudioManager.instance.Play(takenSound);
+        AudioManager.instance.PlayRandom(takenSounds);
         Destroy(gameObject, 1f);
     }
 
     public void Shoot()
     {
         Instantiate(bulletPrefab, shootAt.position, Quaternion.identity);
-        AudioManager.instance.Play(enemyShootSound);
+        AudioManager.instance.PlayRandom(enemyShootSounds);
     }
 }

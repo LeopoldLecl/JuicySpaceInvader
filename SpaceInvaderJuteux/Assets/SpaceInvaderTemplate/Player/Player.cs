@@ -6,19 +6,27 @@ using UnityEngine.Rendering.Universal;
 
 public class Player : MonoBehaviour
 {
+    [Header("Movements")]
     [SerializeField] private float deadzone = 0.3f;
     [SerializeField] private float maxSpeed = 5f;
     [SerializeField] private float acceleration = 10f;
     [SerializeField] private float deceleration = 15f;
+    [SerializeField] private string[] flapSounds;
 
+    [Header("Squash/Stretch")]
     [SerializeField] private float squashAmount = 0.8f;
     [SerializeField] private float stretchAmount = 1.2f;
     [SerializeField] private float normalScale = 1f;
     [SerializeField] private float stretchSpeed = 5f;
 
+    [Header("Health")]
+    [SerializeField] private string[] hurtSounds;
+
+    [Header("Shoot")]
     [SerializeField] private Bullet bulletPrefab = null;
     [SerializeField] private Transform shootAt = null;
     [SerializeField] private float shootCooldown = 1f;
+    [SerializeField] private string[] shootSounds;
 
     private float lastShootTimestamp = Mathf.NegativeInfinity;
     private float currentSpeed = 0f;
@@ -94,13 +102,9 @@ public class Player : MonoBehaviour
         float delta = currentSpeed * Time.deltaTime;
         transform.position = GameManager.Instance.KeepInBounds(transform.position + Vector3.right * delta);
 
-        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
-            AudioManager.instance.Play("Flap1");
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.Q))
-        {
-            AudioManager.instance.Play("Flap2");
+            AudioManager.instance.PlayRandom(flapSounds);
         }
     }
 
@@ -131,7 +135,7 @@ public class Player : MonoBehaviour
     void Shoot()
     {
         Instantiate(bulletPrefab, shootAt.position, Quaternion.identity);
-        AudioManager.instance.Play("Shoot");
+        AudioManager.instance.PlayRandom(shootSounds);
         lastShootTimestamp = Time.time;
         StartCoroutine(RecoilEffect());
     }
@@ -172,14 +176,14 @@ public class Player : MonoBehaviour
             {
                 case 2:
                     Debug.Log("Player health: " + playerHealth);
-                    AudioManager.instance.Play("Hurt1");
+                    AudioManager.instance.PlayRandom(hurtSounds);
                     targetVignetteIntensity = 0.45f;
                     ScreenShake.instance.ShakeScreen(Camera.main, 0.5f, 0.1f);
 
                     break;
                 case 1:
                     Debug.Log("Player health: " + playerHealth);
-                    AudioManager.instance.Play("Hurt2");
+                    AudioManager.instance.PlayRandom(hurtSounds);
                     targetVignetteIntensity = 0.55f;
                     ScreenShake.instance.ShakeScreen(Camera.main, 0.7f, 0.1f);
 
