@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Impact
+  m_Name: Trail_Arrow
   m_Shader: {fileID: 4800000, guid: 6c99f3df526e30d408a814111c296aa2, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -33,6 +33,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _HDR: 20
+    - _HDR: 10
     m_Colors: []
   m_BuildTextureStacks: []
