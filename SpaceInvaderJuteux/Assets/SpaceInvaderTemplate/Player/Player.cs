@@ -93,6 +93,15 @@ public class Player : MonoBehaviour
 
         float delta = currentSpeed * Time.deltaTime;
         transform.position = GameManager.Instance.KeepInBounds(transform.position + Vector3.right * delta);
+
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+        {
+            AudioManager.instance.Play("Flap1");
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.Q))
+        {
+            AudioManager.instance.Play("Flap2");
+        }
     }
 
     void UpdateSquashStretchEffect()
@@ -122,6 +131,7 @@ public class Player : MonoBehaviour
     void Shoot()
     {
         Instantiate(bulletPrefab, shootAt.position, Quaternion.identity);
+        AudioManager.instance.Play("Shoot");
         lastShootTimestamp = Time.time;
         StartCoroutine(RecoilEffect());
     }
@@ -162,12 +172,14 @@ public class Player : MonoBehaviour
             {
                 case 2:
                     Debug.Log("Player health: " + playerHealth);
+                    AudioManager.instance.Play("Hurt1");
                     targetVignetteIntensity = 0.45f;
                     ScreenShake.instance.ShakeScreen(Camera.main, 0.5f, 0.1f);
 
                     break;
                 case 1:
                     Debug.Log("Player health: " + playerHealth);
+                    AudioManager.instance.Play("Hurt2");
                     targetVignetteIntensity = 0.55f;
                     ScreenShake.instance.ShakeScreen(Camera.main, 0.7f, 0.1f);
 
@@ -176,6 +188,7 @@ public class Player : MonoBehaviour
                     targetVignetteIntensity = 0.7f;
                     colorVfx.saturation.value = -100f;
                     colorVfx.contrast.value = 68f;
+                    AudioManager.instance.Play("Death");
                     //ScreenShake.instance.ShakeScreen(Camera.main, 0.9f, 0.1f);
 
                     GameManager.Instance.PlayGameOver();

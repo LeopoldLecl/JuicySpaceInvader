@@ -585,9 +585,69 @@ MonoBehaviour:
   sounds:
   - name: BackGround Music
     clip: {fileID: 8300000, guid: ced8e0e3566112f4f95ec88a05c44e43, type: 3}
-    volume: 0.5
+    volume: 0.3
     pitch: 1
     loop: 1
+    source: {fileID: 0}
+  - name: Charmed
+    clip: {fileID: 8300000, guid: 4e9df77bdb873b547ae00efbafbae300, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Couple
+    clip: {fileID: 8300000, guid: 6f630ac272218254a9d9f5f0b621fd3f, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Death
+    clip: {fileID: 8300000, guid: 6db5c31decb978247be07f24ea396b4c, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemyShoot
+    clip: {fileID: 8300000, guid: 601a7fd4a9e3fde4ca62753154021538, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Flap1
+    clip: {fileID: 8300000, guid: be27f48f272690d4abdca344eb50802a, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hurt1
+    clip: {fileID: 8300000, guid: dcc326bc26b230b43b5dbcab5354a84e, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hurt2
+    clip: {fileID: 8300000, guid: 106c5205c6640514fb48cf07d34464d2, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Shoot
+    clip: {fileID: 8300000, guid: 055769b1b6c78824f9dc07dd0de3ba12, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Win
+    clip: {fileID: 8300000, guid: 342f0b75d791f104b865ec40bcf44acf, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Flap2
+    clip: {fileID: 8300000, guid: da302fa9c610f0b44b870237661c19fb, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
     source: {fileID: 0}
 --- !u!4 &842837973
 Transform:

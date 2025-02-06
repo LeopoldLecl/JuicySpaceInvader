@@ -286,11 +286,12 @@ MonoBehaviour:
   collideWithTag: Player
   coupleId: 0
   coupleIdText: {fileID: 4689545935638161597}
-  inLoveSprite: {fileID: 21300000, guid: 3d78ee51f64d382429c3223041786509, type: 3}
-  inLoveSound: 
-  takenSprite: {fileID: 21300000, guid: 03095c1a42eb2334cb9375bc89609cdb, type: 3}
-  takenSound: 
   currentState: 0
+  enemyShootSound: EnemyShoot
+  inLoveSprite: {fileID: 21300000, guid: 3d78ee51f64d382429c3223041786509, type: 3}
+  inLoveSound: Charmed
+  takenSprite: {fileID: 21300000, guid: 03095c1a42eb2334cb9375bc89609cdb, type: 3}
+  takenSound: Couple
 --- !u!61 &1286698669282929100
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -22,6 +22,9 @@ public class Invader : MonoBehaviour
     private SpriteRenderer sr;
     [HideInInspector] public InvaderState currentState = InvaderState.Single;
 
+    [Header("Shoot")]
+    [SerializeField] private string enemyShootSound;
+
     [Header("In Love")]
     [SerializeField] private Sprite inLoveSprite;
     [SerializeField] private string inLoveSound;
@@ -116,5 +119,6 @@ public class Invader : MonoBehaviour
     public void Shoot()
     {
         Instantiate(bulletPrefab, shootAt.position, Quaternion.identity);
+        AudioManager.instance.Play(enemyShootSound);
     }
 }
