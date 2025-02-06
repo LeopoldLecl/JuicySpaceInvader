@@ -286,11 +286,82 @@ MonoBehaviour:
   collideWithTag: Player
   coupleId: 0
   coupleIdText: {fileID: 4689545935638161597}
+  currentState: 0
   inLoveSprite: {fileID: 21300000, guid: 3d78ee51f64d382429c3223041786509, type: 3}
   inLoveSound: 
   takenSprite: {fileID: 21300000, guid: 03095c1a42eb2334cb9375bc89609cdb, type: 3}
   takenSound: 
-  currentState: 0
+  ScreenShakeIntensity: 0.3
+  ScreenShakeDuration: 0.1
+  ScreenShakeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.089081645
+      value: 0.0047024786
+      inSlope: 0.702957
+      outSlope: 0.702957
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.22853646
+      value: 0.95408356
+      inSlope: 0.7204931
+      outSlope: 0.7204931
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.44050926
+      value: 0.091502875
+      inSlope: 0.83790326
+      outSlope: 0.83790326
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.7378924
+      value: 0.7846355
+      inSlope: 1.5963246
+      outSlope: 1.5963246
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.8719999
+      value: 0.5521502
+      inSlope: 0.76942945
+      outSlope: 0.76942945
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!61 &1286698669282929100
 BoxCollider2D:
   m_ObjectHideFlags: 0

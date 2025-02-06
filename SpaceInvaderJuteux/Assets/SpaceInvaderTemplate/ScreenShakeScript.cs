@@ -44,8 +44,8 @@ public class ScreenShake : MonoBehaviour
             elapsed += Time.deltaTime;
             float strength = intensity * curve.Evaluate(elapsed / duration);
 
-            float x = (Random.value * 2 - 1) * strength;
-            float y = (Random.value * 2 - 1) * strength;
+            float x = Mathf.PerlinNoise(Random.Range(0,5), 1) * strength;
+            float y = Mathf.PerlinNoise(Random.Range(0, 5), 1) * strength;
 
             camera.transform.localPosition = originalPosition + new Vector3(x, y, 0);
 

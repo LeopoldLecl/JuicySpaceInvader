@@ -30,6 +30,10 @@ public class Invader : MonoBehaviour
     [SerializeField] private Sprite takenSprite;
     [SerializeField] private string takenSound;
 
+    [SerializeField] private float ScreenShakeIntensity = 0.04f;
+    [SerializeField] private float ScreenShakeDuration = 0.05f;
+    [SerializeField] private AnimationCurve ScreenShakeCurve = AnimationCurve.Linear(0, 0, 1, 1);
+
 
     internal Action<Invader> onDestroy;
 
@@ -53,7 +57,7 @@ public class Invader : MonoBehaviour
         if(collision.gameObject.tag != collideWithTag) { return; }
         UpdateInvaderState();
         Destroy(collision.gameObject);
-        ScreenShake.instance.ShakeScreen(Camera.main,0.1f, 0.05f);
+        ScreenShake.instance.ShakeScreenWithCurve(Camera.main, ScreenShakeIntensity, ScreenShakeDuration, ScreenShakeCurve);
     }
 
     void UpdateInvaderState()
