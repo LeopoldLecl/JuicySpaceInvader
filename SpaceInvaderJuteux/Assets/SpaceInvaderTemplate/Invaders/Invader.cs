@@ -21,6 +21,7 @@ public class Invader : MonoBehaviour
     public int coupleId;
     [SerializeField] private Text coupleIdText;
     [SerializeField] private GameObject impactPrefab;
+    [SerializeField] private Sprite[] sadSprites;
 
     private SpriteRenderer sr;
     [HideInInspector] public InvaderState currentState = InvaderState.Single;
@@ -29,11 +30,11 @@ public class Invader : MonoBehaviour
     [SerializeField] private string[] enemyShootSounds;
 
     [Header("In Love")]
-    [SerializeField] private Sprite inLoveSprite;
+    [SerializeField] private Sprite[] inLoveSprites;
     [SerializeField] private string[] inLoveSounds;
 
     [Header("Taken")]
-    [SerializeField] private Sprite takenSprite;
+    [SerializeField] private Sprite[] takenSprites;
     [SerializeField] private string[] takenSounds;
     [SerializeField] private GameObject takenVfxPrefab;
 
@@ -48,6 +49,7 @@ public class Invader : MonoBehaviour
         coupleId = _coupleId;
         coupleIdText.text = coupleId.ToString();
         sr = GetComponent<SpriteRenderer>();
+        sr.sprite = sadSprites[coupleId -1];
     }
 
     public void OnDestroy()
@@ -82,7 +84,7 @@ public class Invader : MonoBehaviour
     void SetInLoveState()
     {
         currentState = InvaderState.InLove;
-        sr.sprite = inLoveSprite;
+        sr.sprite = inLoveSprites[coupleId -1];
         AudioManager.instance.PlayRandom(inLoveSounds);
     }
 
@@ -118,11 +120,12 @@ public class Invader : MonoBehaviour
     public void SetTakenState()
     {
         currentState = InvaderState.Taken;
-        sr.sprite = takenSprite;
+        sr.sprite = takenSprites[coupleId -1];
         AudioManager.instance.PlayRandom(takenSounds);
         GameObject vfx = Instantiate(takenVfxPrefab, transform.position, transform.rotation);
         Destroy(vfx, 4f);
         //Destroy(gameObject, 2.5f);
+        transform.parent.gameObject.GetComponent<Wave>().RemoveInvader(this);
         transform.parent = null;
         Vector3 finalPosition = GameManager.Instance.GetFinalPosition(GameManager.Instance.takenFrogCount);
         GameManager.Instance.takenFrogCount++;

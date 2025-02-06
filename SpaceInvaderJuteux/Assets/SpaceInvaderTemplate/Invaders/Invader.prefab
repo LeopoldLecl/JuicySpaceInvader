@@ -266,7 +266,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &9109969425864263349
@@ -287,17 +287,54 @@ MonoBehaviour:
   coupleId: 0
   coupleIdText: {fileID: 4689545935638161597}
   impactPrefab: {fileID: 6619687522983892993, guid: 6ebac3e9e94014049b7f636e2d004439, type: 3}
+  sadSprites:
+  - {fileID: 21300000, guid: 1ce4bc6bd3d678e4ebd239d53bee438e, type: 3}
+  - {fileID: 21300000, guid: 335edbc889899804fa699f31fd9b2f7e, type: 3}
+  - {fileID: 21300000, guid: 42251b3cf8906774eb9dd5227c28ebff, type: 3}
+  - {fileID: 21300000, guid: aa0c48f21142930498001ad00118c94a, type: 3}
+  - {fileID: 21300000, guid: 425a58a51c2545744810cc298b111b82, type: 3}
+  - {fileID: 21300000, guid: c1d392545cc145648a9daca2319f7c44, type: 3}
+  - {fileID: 21300000, guid: a16a0cba1cfc0ce42bbd7f67fbe39d5d, type: 3}
+  - {fileID: 21300000, guid: a81a73a526ff5a14188c94ca683ae2cc, type: 3}
+  - {fileID: 21300000, guid: be0dc69355b35474dbb895b211df4171, type: 3}
+  - {fileID: 21300000, guid: c3982ce2b9959994e9db377347485c0d, type: 3}
+  - {fileID: 21300000, guid: 44ad83adfe4fc3f4c9e85f827f7da727, type: 3}
+  - {fileID: 21300000, guid: 26f1860a94a26cf46bf28bd6b59811f9, type: 3}
   currentState: 0
   enemyShootSounds:
   - EnemyShoot1
   - EnemyShoot2
   - EnemyShoot3
-  inLoveSprite: {fileID: 21300000, guid: 3d78ee51f64d382429c3223041786509, type: 3}
+  inLoveSprites:
+  - {fileID: 21300000, guid: 7698f661e57a6c54ebd1caa98532b06b, type: 3}
+  - {fileID: 21300000, guid: 29a2ac92f806d4b42b50a8ca599cabaf, type: 3}
+  - {fileID: 21300000, guid: 1607472008a5a6e49861021f07133fc8, type: 3}
+  - {fileID: 21300000, guid: e37c9052ffed5364482cb1562e4b3fc0, type: 3}
+  - {fileID: 21300000, guid: 5fcdb727f60c5a34daa95434cf58389f, type: 3}
+  - {fileID: 21300000, guid: 252b477accd55c148b7df783cb4cbef4, type: 3}
+  - {fileID: 21300000, guid: 7556e9ab40637234c939d60aefcd730a, type: 3}
+  - {fileID: 21300000, guid: 393024550189cef4ab61c1267336af0b, type: 3}
+  - {fileID: 21300000, guid: 111b91d8a7d0fbe47a4762d8305cfc86, type: 3}
+  - {fileID: 21300000, guid: 82839a76050cad44c928b92c5b80590b, type: 3}
+  - {fileID: 21300000, guid: 8b6b10d004bd46845a100b6ecf488e73, type: 3}
+  - {fileID: 21300000, guid: 4b7c67d19f1324c409edbec1178090c7, type: 3}
   inLoveSounds:
   - Charmed1
   - Charmed2
   - Charmed3
-  takenSprite: {fileID: 21300000, guid: 03095c1a42eb2334cb9375bc89609cdb, type: 3}
+  takenSprites:
+  - {fileID: 21300000, guid: 41c1b6a065ad42a40bc319ce422e7da0, type: 3}
+  - {fileID: 21300000, guid: bba204325994e7e4fbd043e711bada3c, type: 3}
+  - {fileID: 21300000, guid: 22d4db6a5c82cf748b7df48e2ebccd52, type: 3}
+  - {fileID: 21300000, guid: 7b7bd83b55fe74945a52fe5cac7b3b54, type: 3}
+  - {fileID: 21300000, guid: 83d71bb1e8358eb419850c8143da2998, type: 3}
+  - {fileID: 21300000, guid: 3a23fb5b01267d14ea5a77847eb1ef30, type: 3}
+  - {fileID: 21300000, guid: b9d8b9a10e623824291d8c0467177077, type: 3}
+  - {fileID: 21300000, guid: 254606e0408465a44a64790368b55625, type: 3}
+  - {fileID: 21300000, guid: f2446d49c4fa3c0408a7b8d9814de0f0, type: 3}
+  - {fileID: 21300000, guid: 293bf3eecd867a74589a296ef0bc0ec2, type: 3}
+  - {fileID: 21300000, guid: acd4038cb450d7c4faefefeba65513ab, type: 3}
+  - {fileID: 21300000, guid: c8a47340d81f33b499da4004b2a04787, type: 3}
   takenSounds:
   - Couple1
   - Couple2

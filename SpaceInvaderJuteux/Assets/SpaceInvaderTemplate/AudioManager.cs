@@ -28,6 +28,13 @@ public class AudioManager : MonoBehaviour
         //Debug.Log("je joue " + name);
     }
 
+    public void Stop(string name)
+    {
+        Sound sound = Array.Find(sounds, sound => sound.name == name);
+        sound?.source.Stop();
+        //Debug.Log("je joue " + name);
+    }
+
     public void PlayRandom(string[] names)
     {
         string randomName = names[UnityEngine.Random.Range(0, names.Length)];

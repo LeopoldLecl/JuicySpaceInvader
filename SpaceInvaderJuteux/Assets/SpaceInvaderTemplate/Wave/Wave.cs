@@ -47,6 +47,8 @@ public class Wave : MonoBehaviour
     List<Column> invaderPerColumn = new(); // Keeps track of invaders per column. A column will be removed if empty.
     List<Row> invaderPerRow = new(); // Keeps track of invaders per row. A row will be removed if empty.
 
+    private bool hasLost = false;
+
     void Awake()
     {
         shootCooldown = timeBeforeFirstShoot;
@@ -144,9 +146,10 @@ public class Wave : MonoBehaviour
             case Move.Down:
                 {
                     float bottom = GetRowPosition(invaderPerRow[0].id);
-                    if (GameManager.Instance.IsBelowGameOver(bottom))
+                    if (GameManager.Instance.IsBelowGameOver(bottom) && !hasLost)
                     {
                         GameManager.Instance.PlayGameOver();
+                        hasLost = true;
                     }
 
                     if(distance >= downStep)
@@ -182,7 +185,7 @@ public class Wave : MonoBehaviour
     /// <summary>
     /// Removing an invader from the wave will remove it from "invaders", "invaderPerColumn" and "invaderPerRow". If a column or a row is empty, it will be removed.
     /// </summary>
-    void RemoveInvader(Invader invader)
+    public void RemoveInvader(Invader invader)
     {
         invaders.Remove(invader);
 

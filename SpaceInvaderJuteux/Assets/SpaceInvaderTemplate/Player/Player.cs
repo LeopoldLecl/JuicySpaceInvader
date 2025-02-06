@@ -44,9 +44,9 @@ public class Player : MonoBehaviour
     // Post-processing effects
     private Volume volume;
     private Vignette vignetteVfx;
-    private ColorAdjustments colorVfx;
+    [HideInInspector] public ColorAdjustments colorVfx;
 
-    private float targetVignetteIntensity = 0f; 
+    [HideInInspector] public float targetVignetteIntensity = 0f; 
     private float vignetteLerpSpeed = 10f; 
     void Start()
     {
@@ -177,24 +177,22 @@ public class Player : MonoBehaviour
                 case 2:
                     Debug.Log("Player health: " + playerHealth);
                     AudioManager.instance.PlayRandom(hurtSounds);
-                    targetVignetteIntensity = 0.45f;
+                    targetVignetteIntensity = 0.55f;
                     ScreenShake.instance.ShakeScreen(Camera.main, 0.5f, 0.1f);
 
                     break;
                 case 1:
                     Debug.Log("Player health: " + playerHealth);
                     AudioManager.instance.PlayRandom(hurtSounds);
-                    targetVignetteIntensity = 0.55f;
+                    targetVignetteIntensity = 0.65f;
                     ScreenShake.instance.ShakeScreen(Camera.main, 0.7f, 0.1f);
 
                     break;
                 case 0:
+                    //ScreenShake.instance.ShakeScreen(Camera.main, 0.9f, 0.1f);
                     targetVignetteIntensity = 0.7f;
                     colorVfx.saturation.value = -100f;
                     colorVfx.contrast.value = 68f;
-                    AudioManager.instance.Play("Death");
-                    //ScreenShake.instance.ShakeScreen(Camera.main, 0.9f, 0.1f);
-
                     GameManager.Instance.PlayGameOver();
                     break;
             }

@@ -123,6 +123,13 @@ public class GameManager : MonoBehaviour
 
     public void PlayGameOver()
     {
+        Player player = FindObjectOfType<Player>();
+        player.targetVignetteIntensity = 0.7f;
+        player.colorVfx.saturation.value = -100f;
+        player.colorVfx.contrast.value = 68f;
+        AudioManager.instance.Play("Death");
+        AudioManager.instance.Stop("BackGround Music");
+        AudioManager.instance.Play("Losing Music");
         Debug.Log("Game Over");
         Time.timeScale = 0f;
     }

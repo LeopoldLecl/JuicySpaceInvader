@@ -436,7 +436,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: BackGround Music
-    clip: {fileID: 8300000, guid: ced8e0e3566112f4f95ec88a05c44e43, type: 3}
+    clip: {fileID: 8300000, guid: 2c497c41028a6b44db4c7d63cfc7c609, type: 3}
     volume: 0.3
     pitch: 1
     loop: 1
@@ -566,6 +566,18 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+    source: {fileID: 0}
+  - name: Winning Music
+    clip: {fileID: 8300000, guid: ced8e0e3566112f4f95ec88a05c44e43, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Losing Music
+    clip: {fileID: 8300000, guid: f9ff59cefda649f41a556c7ff62748f8, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 1
     source: {fileID: 0}
 --- !u!4 &842837973
 Transform:
