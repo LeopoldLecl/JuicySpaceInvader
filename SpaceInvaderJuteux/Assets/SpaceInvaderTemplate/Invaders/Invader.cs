@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -120,7 +122,24 @@ public class Invader : MonoBehaviour
         AudioManager.instance.PlayRandom(takenSounds);
         GameObject vfx = Instantiate(takenVfxPrefab, transform.position, transform.rotation);
         Destroy(vfx, 4f);
-        Destroy(gameObject, 2.5f);
+        //Destroy(gameObject, 2.5f);
+        transform.parent = null;
+        Vector3 finalPosition = GameManager.Instance.GetFinalPosition(GameManager.Instance.takenFrogCount);
+        GameManager.Instance.takenFrogCount++;
+        StartCoroutine(MoveCoroutine(finalPosition, 5f));
+    }
+
+
+
+    private IEnumerator MoveCoroutine(Vector3 targetPosition, float speed)
+    {
+        while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+            yield return null;
+        }
+
+        transform.position = targetPosition;
     }
 
     public void Shoot()

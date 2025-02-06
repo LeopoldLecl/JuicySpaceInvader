@@ -122,6 +122,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &374934220
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 374934221}
+  m_Layer: 0
+  m_Name: StartGrassFrogPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &374934221
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374934220}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.37, y: 3.92, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &805531689
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,7 +615,10 @@ MonoBehaviour:
   gameOverHeight: 0.8
   themeName: BackGround Music
   score: 0
+  takenFrogCount: 0
   coupleDatas: {fileID: 11400000, guid: 2e00c6abeb2965b458c58594ad1df6a3, type: 2}
+  StartGrassFrogPoint: {fileID: 374934221}
+  EndGrassFrogPoint: {fileID: 1640730479}
   flowersSr: {fileID: 2003469765}
   secondFlowersSprite: {fileID: 21300000, guid: 08351d7d26ca1144984eecf708c8b087, type: 3}
   thirdFlowersSprite: {fileID: 21300000, guid: f98c14fb6f5be5b49819429a54efc9e2, type: 3}
@@ -695,6 +729,37 @@ Transform:
   m_Children:
   - {fileID: 833631587}
   - {fileID: 2003469766}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1640730478
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1640730479}
+  m_Layer: 0
+  m_Name: EndGrassFrogPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1640730479
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640730478}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.45, y: 3.92, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1833304613
@@ -999,3 +1064,5 @@ SceneRoots:
   - {fileID: 2121195854}
   - {fileID: 1592834380}
   - {fileID: 842837973}
+  - {fileID: 374934221}
+  - {fileID: 1640730479}
