@@ -46,7 +46,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaCutoff: 0.5
-    - _HDR: 2.86
+    - _HDR: 30.41
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
