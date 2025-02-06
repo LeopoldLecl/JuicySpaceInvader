@@ -16,10 +16,23 @@ public class Invader : MonoBehaviour
     [SerializeField] private Bullet bulletPrefab = null;
     [SerializeField] private Transform shootAt = null;
     [SerializeField] private string collideWithTag = "Player";
+    public int coupleId;
     [SerializeField] private Text coupleIdText;
 
-    public InvaderState currentState = InvaderState.Single;
-    public int coupleId;
+    private SpriteRenderer sr;
+    [HideInInspector] public InvaderState currentState = InvaderState.Single;
+
+    [Header("Shoot")]
+    [SerializeField] private string[] enemyShootSounds;
+
+    [Header("In Love")]
+    [SerializeField] private Sprite inLoveSprite;
+    [SerializeField] private string[] inLoveSounds;
+
+    [Header("Taken")]
+    [SerializeField] private Sprite takenSprite;
+    [SerializeField] private string[] takenSounds;
+
 
     internal Action<Invader> onDestroy;
 
@@ -30,6 +43,7 @@ public class Invader : MonoBehaviour
         this.GridIndex = gridIndex;
         coupleId = _coupleId;
         coupleIdText.text = coupleId.ToString();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     public void OnDestroy()
@@ -42,7 +56,7 @@ public class Invader : MonoBehaviour
         if(collision.gameObject.tag != collideWithTag) { return; }
         UpdateInvaderState();
         Destroy(collision.gameObject);
-        ScreenShake.instance.ShakeScreen(Camera.main,0.9f, 0.1f);
+        ScreenShake.instance.ShakeScreen(Camera.main,0.1f, 0.05f);
     }
 
     void UpdateInvaderState()
@@ -62,7 +76,8 @@ public class Invader : MonoBehaviour
     void SetInLoveState()
     {
         currentState = InvaderState.InLove;
-        GetComponent<SpriteRenderer>().color = Color.white;
+        sr.sprite = inLoveSprite;
+        AudioManager.instance.PlayRandom(inLoveSounds);
     }
 
     bool TestTakenState(int _coupleId)
@@ -74,7 +89,6 @@ public class Invader : MonoBehaviour
             Invader invader = remainingInvader.GetComponent<Invader>();
             if (invader.coupleId == _coupleId && invader.currentState != InvaderState.InLove)
             {
-                Debug.Log("quoicoubeh");
                 coupleIsComplete = false;
             }
         }
@@ -89,14 +103,22 @@ public class Invader : MonoBehaviour
             Invader invader = remainingInvader.GetComponent<Invader>();
             if (invader.coupleId == _coupleId)
             {
-                invader.currentState = InvaderState.Taken;
-                Destroy(remainingInvader);
+                invader.SetTakenState();
             }
         }
+    }
+
+    public void SetTakenState()
+    {
+        currentState = InvaderState.Taken;
+        sr.sprite = takenSprite;
+        AudioManager.instance.PlayRandom(takenSounds);
+        Destroy(gameObject, 1f);
     }
 
     public void Shoot()
     {
         Instantiate(bulletPrefab, shootAt.position, Quaternion.identity);
+        AudioManager.instance.PlayRandom(enemyShootSounds);
     }
 }
