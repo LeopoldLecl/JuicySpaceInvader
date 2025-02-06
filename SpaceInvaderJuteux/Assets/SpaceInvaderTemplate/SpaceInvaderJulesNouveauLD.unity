@@ -631,6 +631,7 @@ MonoBehaviour:
   coupleDatas: {fileID: 11400000, guid: 2e00c6abeb2965b458c58594ad1df6a3, type: 2}
   StartGrassFrogPoint: {fileID: 374934221}
   EndGrassFrogPoint: {fileID: 1640730479}
+  confettisPrefab: {fileID: 5778258745806557400, guid: de99f0decb792f44ea3170d5aceeb958, type: 3}
   flowersSr: {fileID: 2003469765}
   secondFlowersSprite: {fileID: 21300000, guid: 08351d7d26ca1144984eecf708c8b087, type: 3}
   thirdFlowersSprite: {fileID: 21300000, guid: f98c14fb6f5be5b49819429a54efc9e2, type: 3}
@@ -1055,6 +1056,10 @@ PrefabInstance:
     - target: {fileID: 4757927962347958258, guid: af02d4f2deb1d504fb5bef4d37dbdd8b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5353748046212087741, guid: af02d4f2deb1d504fb5bef4d37dbdd8b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6936647247926011294, guid: af02d4f2deb1d504fb5bef4d37dbdd8b, type: 3}
       propertyPath: m_Name

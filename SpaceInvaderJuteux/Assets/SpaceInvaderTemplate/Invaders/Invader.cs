@@ -19,7 +19,6 @@ public class Invader : MonoBehaviour
     [SerializeField] private Transform shootAt = null;
     [SerializeField] private string collideWithTag = "Player";
     public int coupleId;
-    [SerializeField] private Text coupleIdText;
     [SerializeField] private GameObject impactPrefab;
     [SerializeField] private Sprite[] sadSprites;
 
@@ -47,7 +46,6 @@ public class Invader : MonoBehaviour
     {
         this.GridIndex = gridIndex;
         coupleId = _coupleId;
-        coupleIdText.text = coupleId.ToString();
         sr = GetComponent<SpriteRenderer>();
         sr.sprite = sadSprites[coupleId -1];
     }
@@ -136,9 +134,11 @@ public class Invader : MonoBehaviour
 
     private IEnumerator MoveCoroutine(Vector3 targetPosition, float speed)
     {
+        Vector3 targetScale = new Vector3(0.4f, 0.4f, 0.4f);
         while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+            transform.localScale = Vector3.Lerp(transform.localScale, targetScale, speed * Time.deltaTime);
             yield return null;
         }
 

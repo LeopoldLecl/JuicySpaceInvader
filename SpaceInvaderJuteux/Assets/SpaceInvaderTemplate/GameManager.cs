@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
 
     public Transform StartGrassFrogPoint;
     public Transform EndGrassFrogPoint;
+    [SerializeField] private GameObject confettisPrefab;
 
     [Header("Flowers")]
     [SerializeField] SpriteRenderer flowersSr;
@@ -59,7 +60,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             vfx1Enabled = !vfx1Enabled;
-            //AddScore(240);
+            AddScore(240);
         } 
         if (Input.GetKeyDown(KeyCode.Alpha2))
             vfx2Enabled = !vfx2Enabled;
@@ -180,6 +181,10 @@ public class GameManager : MonoBehaviour
         player.isInGame = false;
         AudioManager.instance.Stop("BackGround Music");
         AudioManager.instance.Play("Winning Music");
+        GameObject confettis1 = Instantiate(confettisPrefab, player.transform.position + new Vector3(2f, 2f, 0f), player.transform.rotation);
+        GameObject confettis2 = Instantiate(confettisPrefab, player.transform.position + new Vector3(-2f, 2f, 0f), player.transform.rotation);
+        Destroy(confettis1, 2.7f);
+        Destroy(confettis2, 2.7f);
         yield return new WaitForSeconds(2.5f);
         
         Vector3 targetScale = new Vector3(6f, 6f, 6f);
