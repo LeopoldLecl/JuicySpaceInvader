@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -55,7 +57,10 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
             vfx1Enabled = !vfx1Enabled;
+            //AddScore(240);
+        } 
         if (Input.GetKeyDown(KeyCode.Alpha2))
             vfx2Enabled = !vfx2Enabled;
         if (Input.GetKeyDown(KeyCode.Alpha3))
@@ -156,6 +161,10 @@ public class GameManager : MonoBehaviour
         {
             flowersSr.sprite = thirdFlowersSprite;
         }
+        else if(score == 240)
+        {
+            StartCoroutine(WinningCoroutine());
+        }
     }
 
     public Vector3 GetFinalPosition(int count)
@@ -163,6 +172,36 @@ public class GameManager : MonoBehaviour
         float newX = Mathf.Lerp(StartGrassFrogPoint.position.x, EndGrassFrogPoint.position.x, (float)count / 24);
         float yVariation = (count % 2 == 0) ? 0.4f : -0.4f;
         return new Vector3(newX, StartGrassFrogPoint.position.y + (float)yVariation , 0);
+    }
+
+    private IEnumerator WinningCoroutine()
+    {
+        Player player = FindObjectOfType<Player>();
+        player.isInGame = false;
+        AudioManager.instance.Stop("BackGround Music");
+        AudioManager.instance.Play("Winning Music");
+        yield return new WaitForSeconds(2.5f);
+        
+        Vector3 targetScale = new Vector3(6f, 6f, 6f);
+        while (Vector3.Distance(player.transform.position, Vector3.zero) > 0.01f)
+        {
+            player.transform.position = Vector3.MoveTowards(player.transform.position, Vector3.zero, 1f * Time.deltaTime);
+            player.transform.localScale = Vector3.Lerp(player.transform.localScale, targetScale, 1f * Time.deltaTime);
+            yield return null;
+        }
+        player.transform.localScale = targetScale;
+
+        float elapsedTime = 0f;
+        float danceSpeed = 2f;
+        float amplitude = 30f;
+
+        while (true) // Boucle infinie pour "danser"
+        {
+            elapsedTime += Time.deltaTime * danceSpeed;
+            float newZ = Mathf.Lerp(-amplitude, amplitude, Mathf.PingPong(elapsedTime, 1f));
+            player.transform.rotation = Quaternion.Euler(0, 0, newZ);
+            yield return null;
+        }
     }
 
 }

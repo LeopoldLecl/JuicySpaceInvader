@@ -47,7 +47,9 @@ public class Player : MonoBehaviour
     [HideInInspector] public ColorAdjustments colorVfx;
 
     [HideInInspector] public float targetVignetteIntensity = 0f; 
-    private float vignetteLerpSpeed = 10f; 
+    private float vignetteLerpSpeed = 10f;
+
+    [HideInInspector] public bool isInGame = true;
     void Start()
     {
         playerTransform = transform;
@@ -73,8 +75,9 @@ public class Player : MonoBehaviour
     {
         UpdateMovement();
         UpdateActions();
-        UpdateSquashStretchEffect();
         SmoothVignetteEffect(); // Applique l'interpolation du vignettage
+        if (isInGame)
+            UpdateSquashStretchEffect();
     }
 
     void UpdateMovement()
