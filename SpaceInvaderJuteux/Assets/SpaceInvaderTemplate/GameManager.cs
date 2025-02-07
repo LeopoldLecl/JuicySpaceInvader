@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(-100)]
 public class GameManager : MonoBehaviour
@@ -47,6 +48,8 @@ public class GameManager : MonoBehaviour
     public bool vfx8Enabled = true;
     public bool vfx9Enabled = true;
 
+
+    private bool isStart = true;
     void Awake()
     {
         Instance = this;
@@ -80,6 +83,18 @@ public class GameManager : MonoBehaviour
             vfx8Enabled = !vfx8Enabled;
         if (Input.GetKeyDown(KeyCode.Alpha9))
             vfx9Enabled = !vfx9Enabled;
+
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (isStart) { Time.timeScale = 0f; isStart = false; }
+            else { Time.timeScale = 1f; isStart = true; }
+        }
     }
 
     public Vector3 KeepInBounds(Vector3 position)
