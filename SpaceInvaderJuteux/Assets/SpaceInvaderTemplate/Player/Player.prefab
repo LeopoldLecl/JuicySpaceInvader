@@ -4917,7 +4917,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4979,6 +4979,7 @@ MonoBehaviour:
   - Hurt2
   - Hurt3
   bulletPrefab: {fileID: 7369880722360228486, guid: 42269f87d33f3eb4898473401db125ae, type: 3}
+  bulletWithoutTrailPrefab: {fileID: 0}
   shootAt: {fileID: 7489322478117675757}
   shootCooldown: 0.6
   shootSounds:
@@ -4988,6 +4989,9 @@ MonoBehaviour:
   recoilAmplitude: 0.2
   dampingFactor: 2
   frequency: 10
+  colorVfx: {fileID: 0}
+  targetVignetteIntensity: 0
+  isInGame: 1
 --- !u!58 &1494943937062601857
 CircleCollider2D:
   m_ObjectHideFlags: 0
